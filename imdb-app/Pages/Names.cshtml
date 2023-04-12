@@ -1,0 +1,59 @@
+﻿@page
+@model imdb_app.Pages.NamesModel
+@{
+}
+
+<h1>Names</h1>
+
+<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="amount" class="sr-only">Number of names</label>
+        <input asp-for="Amount" type="number" class="form-control" id="amount">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">GO!</button>
+</form>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">row #</th>
+                <th>nconst</th>
+                <th>Name</th>
+                <th>Birth Year</th>
+                <th>Death Year</th>
+                <th>Professions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var i = 1;
+
+                foreach (var name in Model.Names ?? new List<Name>())
+                {
+                    <tr>
+                        <td scope="row">@i</td>
+                        <td>@name.Nconst</td>
+                        <td>@name.PrimaryName</td>
+                        <td>@name.BirthYear</td>
+                        <td>@name.DeathYear</td>
+                        <td>
+                            @{
+                                string professions = "";
+
+                                foreach (var profession in name.Professions)
+                                {
+                                    professions += profession.Profession1 + ", ";
+                                }
+                            }
+
+                            @professions
+                        </td>
+                    </tr>
+
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+</div>

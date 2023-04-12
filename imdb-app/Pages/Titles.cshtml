@@ -1,0 +1,77 @@
+﻿@page
+@model imdb_app.Pages.TitlesModel
+@{
+}
+
+<h1>Titles</h1>
+
+<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="amount" class="sr-only">Number of titles</label>
+        <input asp-for="Amount" type="number" class="form-control" id="amount">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">GO!</button>
+</form>
+
+
+@*
+    <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="amount" class="sr-only">Number of titles</label>
+        <input asp-for="Amount" type="text" class="form-control" id="amount">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">GO!</button>
+    </form>
+*@
+
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th>tconst</th>
+                <th>titleType</th>
+                <th>primaryTitle</th>
+                <th>isAdult</th>
+                <th>startYear</th>
+                <th>endYear</th>
+                <th>runtimeMinutes</th>
+                <th>genres</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var i = 1;
+
+                foreach (var title in Model.Titles ?? new List<Title>())
+                {
+                    <tr>
+                        <td scope="row">@i</td>
+                        <td>@title.Tconst</td>
+                        <td>@title.TitleType</td>
+                        <td>@title.PrimaryTitle</td>
+                        <td>@title.IsAdult</td>
+                        <td>@title.StartYear</td>
+                        <td>@title.EndYear</td>
+                        <td>@title.RuntimeMinutes</td>
+                        <td>
+                            @{
+                                string genres = "";
+
+                                foreach (var genre in title.Genres)
+                                {
+                                    genres += genre.Genre1 + ", ";
+                                }
+                            }
+
+                            @genres
+                        </td>
+                    </tr>
+
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+</div>
