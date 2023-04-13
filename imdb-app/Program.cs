@@ -2,7 +2,6 @@ global using imdb_app.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddDbContext<imdbContext>();
 builder.Services.AddRazorPages();
 

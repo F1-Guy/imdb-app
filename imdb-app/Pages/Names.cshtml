@@ -13,6 +13,14 @@
     <button type="submit" class="btn btn-primary mb-2">GO!</button>
 </form>
 
+<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="criteria" class="sr-only">Wildcard search string</label>
+        <input asp-for="Criteria" type="text" class="form-control" id="criteria">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Search</button>
+</form>
+
 <div class="table-responsive">
     <table class="table">
         <thead>

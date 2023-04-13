@@ -10,68 +10,77 @@
         <label for="amount" class="sr-only">Number of titles</label>
         <input asp-for="Amount" type="number" class="form-control" id="amount">
     </div>
-    <button type="submit" class="btn btn-primary mb-2">GO!</button>
+    <button type="submit" class="btn btn-primary mb-2">Show top movies</button>
 </form>
 
 
-@*
-    <form class="form-inline">
+
+<form class="form-inline">
     <div class="form-group mx-sm-3 mb-2">
-        <label for="amount" class="sr-only">Number of titles</label>
-        <input asp-for="Amount" type="text" class="form-control" id="amount">
+        <label for="criteria" class="sr-only">Wildcard search string</label>
+        <input asp-for="Criteria" type="text" class="form-control" id="criteria">
     </div>
-    <button type="submit" class="btn btn-primary mb-2">GO!</button>
-    </form>
-*@
+    <button type="submit" class="btn btn-primary mb-2">Search</button>
+</form>
+
 
 
 <div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th>tconst</th>
-                <th>titleType</th>
-                <th>primaryTitle</th>
-                <th>isAdult</th>
-                <th>startYear</th>
-                <th>endYear</th>
-                <th>runtimeMinutes</th>
-                <th>genres</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                var i = 1;
 
-                foreach (var title in Model.Titles ?? new List<Title>())
-                {
-                    <tr>
-                        <td scope="row">@i</td>
-                        <td>@title.Tconst</td>
-                        <td>@title.TitleType</td>
-                        <td>@title.PrimaryTitle</td>
-                        <td>@title.IsAdult</td>
-                        <td>@title.StartYear</td>
-                        <td>@title.EndYear</td>
-                        <td>@title.RuntimeMinutes</td>
-                        <td>
-                            @{
-                                string genres = "";
+    @if (Model.Titles?.Count() != 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th>tconst</th>
+                    <th>titleType</th>
+                    <th>primaryTitle</th>
+                    <th>isAdult</th>
+                    <th>startYear</th>
+                    <th>endYear</th>
+                    <th>runtimeMinutes</th>
+                    <th>genres</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var i = 1;
 
-                                foreach (var genre in title.Genres)
-                                {
-                                    genres += genre.Genre1 + ", ";
+                    foreach (var title in Model.Titles ?? new List<Title>())
+                    {
+                        <tr>
+                            <td scope="row">@i</td>
+                            <td>@title.Tconst</td>
+                            <td>@title.TitleType</td>
+                            <td>@title.PrimaryTitle</td>
+                            <td>@title.IsAdult</td>
+                            <td>@title.StartYear</td>
+                            <td>@title.EndYear</td>
+                            <td>@title.RuntimeMinutes</td>
+                            <td>
+                                @{
+                                    string genres = "";
+
+                                    foreach (var genre in title.Genres)
+                                    {
+                                        genres += genre.Genre1 + ", ";
+                                    }
                                 }
-                            }
 
-                            @genres
-                        </td>
-                    </tr>
+                                @genres
+                            </td>
+                        </tr>
 
-                    i++;
+                        i++;
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>There are no movies</p>
+    }
+
 </div>

@@ -23,7 +23,14 @@ namespace imdb_app.Pages
 
         public void OnGet()
         {
-            Titles = service.GetTopAmountTitles(Amount);
+            if (String.IsNullOrEmpty(Criteria))
+            {
+                Titles = service.GetTopAmountTitles(Amount);
+            }
+            else
+            {
+                Titles = service.WildcardSearchTitles(Criteria);
+            }
         }
     }
 }

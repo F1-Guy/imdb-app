@@ -15,11 +15,21 @@ namespace imdb_app.Pages
         [BindProperty(SupportsGet = true)]
         public int Amount { get; set; } = 10;
 
+        [BindProperty(SupportsGet = true)]
+        public string Criteria { get; set; }
+
         public List<Name>? Names { get; set; }
 
         public void OnGet()
         {
-            Names = service.GetTopAmountNames(Amount);
+            if (String.IsNullOrEmpty(Criteria))
+            {
+                Names = service.GetTopAmountNames(Amount);
+            }
+            else
+            {
+                Names = service.WildcardSearchNames(Criteria);
+            }
         }
     }
 }
