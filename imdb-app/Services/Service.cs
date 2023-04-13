@@ -1,9 +1,9 @@
 ﻿global using imdb_app.Models;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace imdb_app.Services
 {
+    // One service to rule them all
     public class Service : IService
     {
         private readonly imdbContext context;
@@ -15,7 +15,7 @@ namespace imdb_app.Services
 
         public List<Title> GetTopAmountTitles(int amount)
         {
-            return context.Titles.Include(t => t.Genres).Take(amount).ToList();
+            return context.Titles.Include(t => t.Genres).Take(amount).OrderByDescending(t=> t.Tconst).ToList();
         }
 
         public List<Title> WildcardSearchTitles(string criteria)
@@ -40,9 +40,22 @@ namespace imdb_app.Services
             return list;
         }
 
+        public void AddTitle(Title title, string genres)
+        {
+            context.Procedures.addTitleAsync(
+                title.TitleType,
+                title.PrimaryTitle,
+                title.OriginalTitle,
+                title.IsAdult,
+                title.StartYear,
+                title.EndYear,
+                title.RuntimeMinutes,
+                genres);
+        }
+
         public List<Name> GetTopAmountNames(int amount)
         {
-            return context.Names.Include(n => n.Professions).Take(amount).ToList();
+            return context.Names.Include(n => n.Professions).OrderByDescending(n => n.Nconst).Take(amount).ToList();
         }
 
         public List<Name> WildcardSearchNames(string criteria)

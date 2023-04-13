@@ -6,6 +6,8 @@
 
         List<Title> WildcardSearchTitles(string criteria);
 
+        public void AddTitle(Title titlem, string genres);
+
         List<Name> GetTopAmountNames(int amount);
 
         List<Name> WildcardSearchNames(string criteria);

@@ -5,8 +5,8 @@
 
 <h1>Titles</h1>
 
-<form class="form-inline">
-    <div class="form-group mx-sm-3 mb-2">
+<form class="form-inline py-3">
+    <div class="form-group mx-sm-3 mb-2 ">
         <label for="amount" class="sr-only">Number of titles</label>
         <input asp-for="Amount" type="number" class="form-control" id="amount">
     </div>
@@ -15,7 +15,7 @@
 
 
 
-<form class="form-inline">
+<form class="form-inline py-3">
     <div class="form-group mx-sm-3 mb-2">
         <label for="criteria" class="sr-only">Wildcard search string</label>
         <input asp-for="Criteria" type="text" class="form-control" id="criteria">
@@ -23,7 +23,7 @@
     <button type="submit" class="btn btn-primary mb-2">Search</button>
 </form>
 
-
+<a asp-page="/AddTitle" type="submit" class="btn btn-primary mb-2 py-3">Add a title</a>
 
 <div class="table-responsive">
 
