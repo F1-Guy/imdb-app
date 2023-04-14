@@ -23,7 +23,7 @@
     <button type="submit" class="btn btn-primary mb-2">Search</button>
 </form>
 
-<a asp-page="/AddTitle" class="btn btn-primary mb-2 py-3">Add a title</a>
+<a asp-page="/AddTitle" class="btn btn-primary mb-2 my-2">Add a title</a>
 
 <div class="table-responsive">
 
@@ -41,6 +41,7 @@
                     <th>endYear</th>
                     <th>runtimeMinutes</th>
                     <th>genres</th>
+                    <th>Update</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,6 +71,7 @@
 
                                 @genres
                             </td>
+                            <td><a asp-page="/UpdateTitle" asp-route-tconst="@title.Tconst" class="btn btn-primary mx-2 my-2">Update</a></td>
                         </tr>
 
                         i++;

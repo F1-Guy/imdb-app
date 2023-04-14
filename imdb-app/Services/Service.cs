@@ -13,9 +13,15 @@ namespace imdb_app.Services
             context = service;
         }
 
+        #region Title Services
         public List<Title> GetTopAmountTitles(int amount)
         {
             return context.Titles.Include(t => t.Genres).Take(amount).OrderByDescending(t => t.Tconst).ToList();
+        }
+
+        public Title FindTitleByTconst(string tconst)
+        {
+            return context.Titles.Where(t => t.Tconst == tconst).Include(t => t.Genres).FirstOrDefault() ?? throw new Exception();
         }
 
         public List<Title> WildcardSearchTitles(string criteria)
@@ -50,17 +56,33 @@ namespace imdb_app.Services
                 title.StartYear,
                 title.EndYear,
                 title.RuntimeMinutes,
-                genres);
+                genres).Wait();
         }
 
+        public void UpdateTitle(Title title, string genres)
+        {
+            context.Procedures.updateTitleAsync(
+                title.Tconst,
+                title.TitleType,
+                title.PrimaryTitle,
+                title.OriginalTitle,
+                title.IsAdult,
+                title.StartYear,
+                title.EndYear,
+                title.RuntimeMinutes,
+                genre: genres
+                ).Wait();
+        }
+        #endregion
 
+        #region Name Services
         public void AddName(Name name, string professions)
         {
             context.Procedures.addNameAsync(
                 name.PrimaryName,
                 name.BirthYear,
                 name.DeathYear,
-                professions);
+                professions).Wait();
         }
 
         public List<Name> GetTopAmountNames(int amount)
@@ -85,10 +107,10 @@ namespace imdb_app.Services
 
             return list;
         }
+        #endregion
 
-
-        static List<V> TransformItems<T, V>(
-        List<T> items, Func<T, V> transformer)
+        #region Generic
+        static List<V> TransformItems<T, V>(List<T> items, Func<T, V> transformer)
         {
             List<V> transformedItems = new List<V>();
             foreach (T item in items)
@@ -96,8 +118,9 @@ namespace imdb_app.Services
                 V transformedItem = transformer(item);
                 transformedItems.Add(transformedItem);
             }
+
             return transformedItems;
         }
+        #endregion
     }
 }
-

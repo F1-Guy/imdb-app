@@ -79,7 +79,7 @@
          "ObjectType": 1
       }
    ],
-   "UiHint": "BARTOL-PC.IMDB",
+   "UiHint": "BARTOL-LAPTOP.IMDB",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,

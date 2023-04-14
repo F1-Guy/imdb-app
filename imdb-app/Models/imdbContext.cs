@@ -32,7 +32,7 @@ namespace imdb_app.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=IMDB;User ID=user;Password=pass123;;Encrypt=True;TrustServerCertificate=True");
+                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=IMDB;User ID=user;Password=pass123;Encrypt=True;TrustServerCertificate=True");
             }
         }
 

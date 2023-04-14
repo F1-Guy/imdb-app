@@ -6,13 +6,17 @@
 
         List<Title> WildcardSearchTitles(string criteria);
 
-        public void AddTitle(Title titlem, string genres);
+        Title FindTitleByTconst(string tconst);
+
+        void AddTitle(Title titlem, string genres);
+
+        void UpdateTitle(Title title, string genres);
 
         List<Name> GetTopAmountNames(int amount);
 
         List<Name> WildcardSearchNames(string criteria);
 
-        public void AddName(Name name, string professions);
+        void AddName(Name name, string professions);
         
     }
 }
