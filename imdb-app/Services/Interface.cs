@@ -12,6 +12,7 @@
 
         List<Name> WildcardSearchNames(string criteria);
 
+        public void AddName(Name name, string professions);
         
     }
 }

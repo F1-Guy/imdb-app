@@ -15,7 +15,7 @@ namespace imdb_app.Services
 
         public List<Title> GetTopAmountTitles(int amount)
         {
-            return context.Titles.Include(t => t.Genres).Take(amount).OrderByDescending(t=> t.Tconst).ToList();
+            return context.Titles.Include(t => t.Genres).Take(amount).OrderByDescending(t => t.Tconst).ToList();
         }
 
         public List<Title> WildcardSearchTitles(string criteria)
@@ -36,7 +36,7 @@ namespace imdb_app.Services
                     EndYear = t.endYear,
                     RuntimeMinutes = t.runtimeMinutes
                 });
-                
+
             return list;
         }
 
@@ -51,6 +51,16 @@ namespace imdb_app.Services
                 title.EndYear,
                 title.RuntimeMinutes,
                 genres);
+        }
+
+
+        public void AddName(Name name, string professions)
+        {
+            context.Procedures.addNameAsync(
+                name.PrimaryName,
+                name.BirthYear,
+                name.DeathYear,
+                professions);
         }
 
         public List<Name> GetTopAmountNames(int amount)
@@ -75,6 +85,7 @@ namespace imdb_app.Services
 
             return list;
         }
+
 
         static List<V> TransformItems<T, V>(
         List<T> items, Func<T, V> transformer)

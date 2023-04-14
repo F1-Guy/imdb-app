@@ -1,0 +1,31 @@
+﻿@page
+@model imdb_app.Pages.AddNameModel
+@{
+}
+
+<h1>Add Name</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="nconst">nconst</label>
+        <input asp-for="Name.Nconst" class="form-control" readonly placeholder="nconst is generated automatically" />
+    </div>
+    <div class="form-group">
+        <label for="primaryName">primaryName</label>
+        <input asp-for="Name.PrimaryName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="birthYear">birthYear</label>
+        <input asp-for="Name.BirthYear" class="form-control" type="number" />
+    </div>
+    <div class="form-group">
+        <label for="deathYear">deathYear</label>
+        <input asp-for="Name.DeathYear" class="form-control" type="number" />
+    </div>
+    <div class="form-group">
+        <label for="professions">Professions</label>
+        <input asp-for="Professions" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Add Name</button>
+</form>
