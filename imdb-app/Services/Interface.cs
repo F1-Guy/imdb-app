@@ -8,7 +8,7 @@
 
         Title FindTitleByTconst(string tconst);
 
-        void AddTitle(Title titlem, string genres);
+        void AddTitle(Title title, string genres);
 
         void UpdateTitle(Title title, string genres);
 
@@ -19,6 +19,5 @@
         List<Name> WildcardSearchNames(string criteria);
 
         void AddName(Name name, string professions);
-        
     }
 }

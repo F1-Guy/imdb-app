@@ -6,12 +6,10 @@ namespace imdb_app.Pages
     {
         public IndexModel()
         {
-
         }
 
         public void OnGet()
         {
-
         }
     }
 }

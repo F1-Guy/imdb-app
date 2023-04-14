@@ -18,7 +18,7 @@ namespace imdb_app.Pages
         [BindProperty(SupportsGet = true)]
         public string Criteria { get; set; }
 
-        public List<Name>? Names { get; set; }
+        public List<Name> Names { get; set; }
 
         public void OnGet()
         {

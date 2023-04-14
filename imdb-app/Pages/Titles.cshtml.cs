@@ -15,11 +15,10 @@ namespace imdb_app.Pages
         [BindProperty(SupportsGet = true)]
         public int Amount { get; set; } = 10;
 
-
         [BindProperty(SupportsGet = true)]
-        public string? Criteria { get; set; }
+        public string Criteria { get; set; }
 
-        public List<Title>? Titles { get; set; }
+        public List<Title> Titles { get; set; }
 
         public void OnGet()
         {

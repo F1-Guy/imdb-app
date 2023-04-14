@@ -5,42 +5,41 @@
 
 <h1>Titles</h1>
 
-<form class="form-inline py-3">
-    <div class="form-group mx-sm-3 mb-2 ">
-        <label for="amount" class="sr-only">Number of titles</label>
-        <input asp-for="Amount" type="number" class="form-control" id="amount">
+<a asp-page="/AddTitle" class="btn btn-primary my-2">Add a title</a>
+
+<div class="row align-items-center">
+    <div class="col-auto">
+        <form class="form-inline">
+            <label for="amount" class="form-label mr-2">Number of titles</label>
+            <input asp-for="Amount" type="number" class="form-control mr-2" id="amount">
+            <button type="submit" class="btn btn-primary my-2">Show</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Show top movies</button>
-</form>
-
-
-
-<form class="form-inline py-3">
-    <div class="form-group mx-sm-3 mb-2">
-        <label for="criteria" class="sr-only">Wildcard search string</label>
-        <input asp-for="Criteria" type="text" class="form-control" id="criteria">
+    <div class="col-auto">
+        <form class="form-inline">
+            <label for="criteria" class="form-label mr-2">Wildcard search string</label>
+            <input asp-for="Criteria" type="text" class="form-control mr-2" id="criteria">
+            <button type="submit" class="btn btn-primary my-2">Search</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Search</button>
-</form>
-
-<a asp-page="/AddTitle" class="btn btn-primary mb-2 my-2">Add a title</a>
+</div>
 
 <div class="table-responsive">
 
     @if (Model.Titles?.Count() != 0)
     {
         <table class="table">
-            <thead>
+            <thead class="text-center align-content-center">
                 <tr>
                     <th scope="col">#</th>
                     <th>tconst</th>
-                    <th>titleType</th>
-                    <th>primaryTitle</th>
-                    <th>isAdult</th>
-                    <th>startYear</th>
-                    <th>endYear</th>
-                    <th>runtimeMinutes</th>
-                    <th>genres</th>
+                    <th>Title Type</th>
+                    <th>Primary Title</th>
+                    <th>Adult Content</th>
+                    <th>Start Year</th>
+                    <th>End Year</th>
+                    <th>Runtime (minutes)</th>
+                    <th>Genres</th>
                     <th>Update</th>
                     <th>Delete</th>
                 </tr>
@@ -51,7 +50,7 @@
 
                     foreach (var title in Model.Titles ?? new List<Title>())
                     {
-                        <tr>
+                        <tr class="text-center">
                             <td scope="row">@i</td>
                             <td>@title.Tconst</td>
                             <td>@title.TitleType</td>
@@ -62,12 +61,7 @@
                             <td>@title.RuntimeMinutes</td>
                             <td>
                                 @{
-                                    string genres = "";
-
-                                    foreach (var genre in title.Genres)
-                                    {
-                                        genres += genre.Genre1 + ", ";
-                                    }
+                                    string genres = String.Join(", ", title.Genres.Select(g => g.Genre1));
                                 }
 
                                 @genres

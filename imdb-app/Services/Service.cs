@@ -16,7 +16,7 @@ namespace imdb_app.Services
         #region Title Services
         public List<Title> GetTopAmountTitles(int amount)
         {
-            return context.Titles.Include(t => t.Genres).Take(amount).OrderByDescending(t => t.Tconst).ToList();
+            return context.Titles.Include(t => t.Genres).OrderByDescending(t => t.Tconst).Take(amount).ToList();
         }
 
         public Title FindTitleByTconst(string tconst)
@@ -28,7 +28,7 @@ namespace imdb_app.Services
         {
             Task<List<findTitleResult>> task = context.Procedures.findTitleAsync(criteria);
             task.Wait();
-            var resultList = task.Result;
+            List<findTitleResult> resultList = task.Result;
 
             List<Title> list = TransformItems<findTitleResult, Title>(
                 resultList, t => new Title
@@ -99,7 +99,7 @@ namespace imdb_app.Services
         {
             Task<List<findNameResult>> task = context.Procedures.findNameAsync(criteria);
             task.Wait();
-            var resultList = task.Result;
+            List<findNameResult> resultList = task.Result;
 
             List<Name> list = TransformItems<findNameResult, Name>(
                 resultList, n => new Name
@@ -115,9 +115,9 @@ namespace imdb_app.Services
         #endregion
 
         #region Generic
-        static List<V> TransformItems<T, V>(List<T> items, Func<T, V> transformer)
+        private static List<V> TransformItems<T, V>(List<T> items, Func<T, V> transformer)
         {
-            List<V> transformedItems = new List<V>();
+            List<V> transformedItems = new();
             foreach (T item in items)
             {
                 V transformedItem = transformer(item);

@@ -17,7 +17,7 @@ namespace imdb_app.Pages
 
         [BindProperty(SupportsGet = true)]
         public string Genres { get; set; }
-        
+
         public void OnGet(string tconst)
         {
             Title = service.FindTitleByTconst(tconst);

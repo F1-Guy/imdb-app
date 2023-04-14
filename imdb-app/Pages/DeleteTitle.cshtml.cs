@@ -5,7 +5,7 @@ namespace imdb_app.Pages
 {
     public class DeleteTitleModel : PageModel
     {
-        readonly private IService service;
+        private readonly IService service;
 
         public DeleteTitleModel(IService service)
         {

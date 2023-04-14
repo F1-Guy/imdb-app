@@ -12,7 +12,7 @@
         <input asp-for="Title.Tconst" class="form-control" readonly/>
     </div>
     <div class="form-group">
-        <label for="titleType">titleType</label>
+        <label for="Ritle Type">Title Type</label>
         <input asp-for="Title.TitleType" class="form-control" />
     </div>
     <div class="form-group">
@@ -22,15 +22,6 @@
     <div class="form-group">
         <label for="originalTitle">originalTitle</label>
         <input asp-for="Title.OriginalTitle" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="isAdult">isAdult</label>
-        <div class="form-check">
-            <input asp-for="Title.IsAdult" class="form-check-input" type="checkbox" />
-            <label class="form-check-label" for="isAdult">
-                Check if adult
-            </label>
-        </div>
     </div>
     <div class="form-group">
         <label for="startYear">startYear</label>
@@ -48,6 +39,14 @@
         <label for="genres">Genres</label>
         <input asp-for="Genres" class="form-control" />
     </div>
-
-    <button type="submit" class="btn btn-success mx-2 my-2">Update</button>
+    <div class="form-group">
+        <label for="isAdult">isAdult</label>
+        <div class="form-check">
+            <input asp-for="Title.IsAdult" class="form-check-input" type="checkbox" />
+            <label class="form-check-label" for="isAdult">
+                Check if adult
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success my-2">Update</button>
 </form>

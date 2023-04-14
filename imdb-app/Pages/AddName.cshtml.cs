@@ -20,10 +20,11 @@ namespace imdb_app.Pages
 
         public void OnGet()
         {
-            
+
         }
 
-        public IActionResult OnPost() { 
+        public IActionResult OnPost()
+        {
 
             service.AddName(Name, Professions);
             return RedirectToPage("/Names");

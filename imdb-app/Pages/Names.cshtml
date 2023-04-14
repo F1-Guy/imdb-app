@@ -5,28 +5,31 @@
 
 <h1>Names</h1>
 
-<form class="form-inline">
-    <div class="form-group mx-sm-3 mb-2">
-        <label for="amount" class="sr-only">Number of names</label>
-        <input asp-for="Amount" type="number" class="form-control" id="amount">
-    </div>
-    <button type="submit" class="btn btn-primary mb-2">GO!</button>
-</form>
-
-<form class="form-inline">
-    <div class="form-group mx-sm-3 mb-2">
-        <label for="criteria" class="sr-only">Wildcard search string</label>
-        <input asp-for="Criteria" type="text" class="form-control" id="criteria">
-    </div>
-    <button type="submit" class="btn btn-primary mb-2">Search</button>
-</form>
-
 <a asp-page="/AddName" class="btn btn-primary mb-2 my-2">Add a name</a>
+
+<div class="row align-items-center">
+    <div class="col-auto">
+        <form class="form-inline">
+            <label for="amount" class="form-label mr-2">Number of names</label>
+            <input asp-for="Amount" type="number" class="form-control mr-2" id="amount">
+            <button type="submit" class="btn btn-primary my-2">Show</button>
+        </form>
+    </div>
+    <div class="col-auto">
+        <form class="form-inline">
+            <label for="criteria" class="form-label mr-2">Wildcard search string</label>
+            <input asp-for="Criteria" type="text" class="form-control mr-2" id="criteria">
+            <button type="submit" class="btn btn-primary my-2">Search</button>
+        </form>
+    </div>
+</div>
+
+
 
 <div class="table-responsive">
     <table class="table">
         <thead>
-            <tr>
+            <tr class="text-center align-content-center">
                 <th scope="col">row #</th>
                 <th>nconst</th>
                 <th>Name</th>
@@ -41,7 +44,7 @@
 
                 foreach (var name in Model.Names ?? new List<Name>())
                 {
-                    <tr>
+                    <tr class="text-center">
                         <td scope="row">@i</td>
                         <td>@name.Nconst</td>
                         <td>@name.PrimaryName</td>
@@ -49,14 +52,8 @@
                         <td>@name.DeathYear</td>
                         <td>
                             @{
-                                string professions = "";
-
-                                foreach (var profession in name.Professions)
-                                {
-                                    professions += profession.Profession1 + ", ";
-                                }
-                            }
-
+                                string professions = String.Join(", ", name.Professions.Select(p => p.Profession1.Replace('_', ' ')));
+                             }
                             @professions
                         </td>
                     </tr>
