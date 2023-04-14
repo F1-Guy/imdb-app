@@ -12,6 +12,8 @@
 
         void UpdateTitle(Title title, string genres);
 
+        void DeleteTitle(string tconst);
+
         List<Name> GetTopAmountNames(int amount);
 
         List<Name> WildcardSearchNames(string criteria);

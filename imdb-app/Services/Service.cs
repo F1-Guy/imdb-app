@@ -73,6 +73,11 @@ namespace imdb_app.Services
                 genre: genres
                 ).Wait();
         }
+
+        public void DeleteTitle(string tconst)
+        {
+            context.Procedures.deleteTitleAsync(tconst).Wait();
+        }
         #endregion
 
         #region Name Services
